@@ -12,7 +12,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="main-main">
       <nav>
         <h1>Importodo</h1>
         <button onClick={handleConfirm}>Help</button>

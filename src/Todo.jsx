@@ -17,7 +17,7 @@ const Todo = () => {
   const [done, setDone] = useState([]);
 
   //this is to show/hide the 'Completed' h2 later on
-  const [toggle, setToggle] = useState("block");
+  const [toggle, setToggle] = useState("none");
 
   //important -> an array of important todos, used later.
   const [important, setImportant] = useState([]);
@@ -96,6 +96,7 @@ const Todo = () => {
   //if its not, that means we should add it to the [done] array
 
   function handleAdd(e) {
+    setToggle("block");
     done.includes(e.target.value) ? null : setDone([...done, e.target.value]);
   }
 
@@ -182,7 +183,6 @@ const Todo = () => {
 
   return (
     <div className="main-container">
-      <h1>Welcome to to-do</h1>
       <div className="sub-main-container">
         <form className="form" onSubmit={handleSubmit} action="#">
           <input
@@ -193,6 +193,7 @@ const Todo = () => {
             required
             spellCheck={true}
             autoFocus
+            placeholder="Enter todo here.."
           />
           <button className="add-todo-button">Add Todo</button>
           <button className="reset-button" onClick={handleReset}>
@@ -217,79 +218,85 @@ const Todo = () => {
         </button>
       </div>
 
-      <div className="the-todo-display">
-        <h2 className="todo-h2">To do:</h2>
-        <ul>
-          {list.map((item, index) => (
-            <li key={index}>
-              {item}
-              <button
-                className="the-add-button"
-                value={item}
-                onClick={handleAdd}
-              >
-                ✅
-              </button>
-              <button
-                className="the-delete-button"
-                value={item}
-                onClick={handleDelete}
-              >
-                {" "}
-                ❌
-              </button>
-              <button
-                className="purple-important-button"
-                value={item}
-                onClick={handleImportant}
-              >
-                🟣
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="the-completed-display">
-        <div style={{ display: toggle }}>
-          <h2>Completed:</h2>
+      <div className="middle-display">
+        <div className="the-todo-display">
+          <h2 className="todo-h2">Todo List:</h2>
           <ul>
-            {done.map((item) => (
-              <li style={{ textDecoration: "line-through" }} key={item}>
+            {list.map((item, index) => (
+              <li className="mess" key={index}>
                 {item}
                 <button
-                  className="completed-delete-button"
+                  className="the-add-button"
                   value={item}
-                  onClick={deleteCompleted}
+                  onClick={handleAdd}
                 >
-                  X
+                  ✅
+                </button>
+                <button
+                  className="the-delete-button"
+                  value={item}
+                  onClick={handleDelete}
+                >
+                  {" "}
+                  ❌
+                </button>
+                <button
+                  className="purple-important-button"
+                  value={item}
+                  onClick={handleImportant}
+                >
+                  🟣
                 </button>
               </li>
             ))}
           </ul>
         </div>
-      </div>
-      <div className="the-important-display">
-        <div style={{ display: toggle2 }}>
-          <h2 className="important-h2">Important:</h2>
-          <ul>
-            {important.length > 0 &&
-              combine.map((item, idx) => {
-                return (
-                  <div key={idx}>
-                    <li>
-                      {item}
-                      <button
-                        className="important-delete-button"
-                        value={item}
-                        onClick={handleImportantDelete}
-                      >
-                        🍀
-                      </button>
-                    </li>
-                  </div>
-                );
-              })}
-          </ul>
+        <div className="the-completed-display">
+          <div style={{ display: toggle }}>
+            <h2 className="todo-h2">Completed:</h2>
+            <ul>
+              {done.map((item) => (
+                <li
+                  className="skies"
+                  style={{ textDecoration: "line-through" }}
+                  key={item}
+                >
+                  {item}
+                  <button
+                    className="completed-delete-button"
+                    value={item}
+                    onClick={deleteCompleted}
+                  >
+                    X
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="the-important-display">
+          <div style={{ display: toggle2 }}>
+            <h2 className="todo-h2">Important:</h2>
+            <ul>
+              {important.length > 0 &&
+                combine.map((item, idx) => {
+                  return (
+                    <div key={idx}>
+                      <li className="stars">
+                        {item}
+                        <button
+                          className="important-delete-button"
+                          value={item}
+                          onClick={handleImportantDelete}
+                        >
+                          🍀
+                        </button>
+                      </li>
+                    </div>
+                  );
+                })}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

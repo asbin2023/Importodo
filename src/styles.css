@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  /* border: 1px solid rgba(250, 128, 114, 0.474); */
+  font-family: Inter;
+}
+.main-main {
+  max-width: 3500px;
+  margin: 0.05% 0.05%;
+  padding: 30px;
+  min-height: 100vh;
+  max-height: 100%;
+
+  background-color: rgba(52, 47, 197, 0.208);
+}
+nav {
+  background-color: rgba(87, 18, 122, 0.539);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 2%;
+  color: rgba(255, 255, 255, 0.738);
+}
+
+nav button {
+  padding: 10px 20px;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.form input {
+  border: 1px solid rgba(149, 0, 255, 0.303);
+  border-radius: 10px;
+  flex: 5;
+  padding: 10px;
+  color: rgb(25, 5, 5);
+  background-color: rgba(220, 219, 230, 0.619);
+  margin-right: 5px;
+}
+.form .add-todo-button {
+  flex: 2;
+  padding: 10px;
+  margin-right: 5px;
+}
+.form .reset-button {
+  flex: 1.5;
+  padding: 10px;
+}
+
+.the-three-buttons {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.display-completed-button {
+  flex: 1;
+  padding: 10px;
+  margin-right: 5px;
+}
+
+.hide-completed-button {
+  flex: 1;
+  padding: 10px;
+  margin-right: 5px;
+}
+
+.sort-by-button {
+  flex: 1;
+  padding: 10px;
+}
+button {
+  font-weight: 800;
+  font-size: 0.9rem;
+  background-color: rgba(225, 220, 228, 0.632);
+}
+button:hover {
+  border-radius: 5px;
+  border-color: rgb(0, 0, 0);
+  background-color: rgba(29, 27, 25, 0.136);
+  color: rgb(237, 202, 4);
+}
+
+.middle-display {
+  display: grid;
+  padding-bottom: 5%;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 4%;
+  justify-items: space-between;
+  color: rgba(255, 255, 255, 0.783);
+  gap: 0 2px;
+}
+
+.the-todo-display {
+  height: 100%;
+  width: 100%;
+}
+
+.the-completed-display {
+  height: 100%;
+  width: 100%;
+}
+.the-important-display {
+  height: 100%;
+  width: 100%;
+}
+.mess {
+  background-color: rgb(56, 56, 69);
+  margin: 10px;
+  padding: 10px;
+  font-weight: 500;
+}
+.the-delete-button,
+.purple-important-button,
+.the-add-button {
+  margin: 0 4px;
+
+  display: none;
+}
+
+.mess:hover .the-delete-button {
+  display: inline-block;
+}
+.mess:hover .the-add-button {
+  display: inline-block;
+}
+.mess:hover .purple-important-button {
+  display: inline-block;
+}
+
+html {
+  background-color: rgba(49, 5, 41, 0.553);
+}
+
+.skies {
+  background-color: rgb(56, 56, 69);
+  margin: 10px;
+  padding: 10px;
+  font-weight: 500;
+}
+.skies:hover .completed-delete-button {
+  display: inline-block;
+}
+
+.completed-delete-button {
+  display: none;
+  margin: 0 10px;
+}
+.important-delete-button {
+  display: none;
+  margin: 0 10px;
+}
+.stars {
+  background-color: rgb(56, 56, 69);
+  margin: 10px;
+  padding: 10px;
+  font-weight: 500;
+}
+.stars:hover .important-delete-button {
+  display: inline-block;
+}
+
+.todo-h2 {
+  margin-left: 50px;
+  background-color: rgba(240, 255, 255, 0.302);
+  color: black;
+  margin-right: 10px;
+  padding: 7px;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .the-todo-display,
+  .the-completed-display,
+  .the-important-display {
+    max-width: 80%;
+  }
+  .middle-display {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  button {
+    font-size: 12px;
+  }
+  .todo-h2 {
+    font-size: 16px;
+  }
+  .mess,
+  .skies,
+  .stars {
+    font-size: 13px;
+  }
+  nav {
+    max-height: 50px;
+  }
+  .main-main {
+    padding: 10px;
+  }
+  .todo-h2 {
+    margin-left: 30px;
+  }
+}
