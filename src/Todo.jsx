@@ -17,7 +17,7 @@ const Todo = () => {
   const [done, setDone] = useState([]);
 
   //this is to show/hide the 'Completed' h2 later on
-  const [toggle, setToggle] = useState("none");
+  const [toggle, setToggle] = useState(false);
 
   //important -> an array of important todos, used later.
   const [important, setImportant] = useState([]);
@@ -82,11 +82,9 @@ const Todo = () => {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //for the next two functions, i created them in order to show/hide the 'Completed' div element. pretty simple functions.
-  function handleToggle1() {
-    setToggle("block");
-  }
-  function handleToggle2() {
-    setToggle("none");
+  function handleToggle() {
+    console.log(done.length);
+    done.length < 1 ? confirm("Completed is empty") : setToggle(!toggle);
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -196,18 +194,16 @@ const Todo = () => {
             placeholder="Enter todo here.."
           />
           <button className="add-todo-button">Add Todo</button>
-          <button className="reset-button" onClick={handleReset}>
+          <button type="reset" className="reset-button" onClick={handleReset}>
             Reset
           </button>
         </form>
       </div>
       <div className="the-three-buttons">
-        <button className="display-completed-button" onClick={handleToggle1}>
-          Display completed
+        <button className="display-completed-button" onClick={handleToggle}>
+          Toggle Completed
         </button>
-        <button className="hide-completed-button" onClick={handleToggle2}>
-          Hide completed
-        </button>
+        <button className="hide-completed-button">Placeholder</button>
         <button
           className="sort-by-button"
           disabled={important.length <= 0 && true}
@@ -220,10 +216,16 @@ const Todo = () => {
 
       <div className="middle-display">
         <div className="the-todo-display">
-          <h2 className="todo-h2">Todo List:</h2>
+          <h2
+            style={{ display: list.length > 0 ? "block" : "none" }}
+            className="todo-h2"
+          >
+            {" "}
+            Todo List
+          </h2>
           <ul>
             {list.map((item, index) => (
-              <li className="mess" key={index}>
+              <li draggable className="mess" key={index}>
                 {item}
                 <button
                   className="the-add-button"
@@ -252,7 +254,9 @@ const Todo = () => {
           </ul>
         </div>
         <div className="the-completed-display">
-          <div style={{ display: toggle }}>
+          <div
+            style={{ display: toggle && done.length > 0 ? "block" : "none" }}
+          >
             <h2 className="todo-h2">Completed:</h2>
             <ul>
               {done.map((item) => (
