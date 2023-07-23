@@ -160,39 +160,36 @@ const Todo = () => {
   useEffect(() => {
     localStorage.setItem("Todo List", JSON.stringify([...list]));
   }, [list]);
-
+  console.log(whereTheItemWasDragged);
   /////////////////  //////////////////////////////////////////////////////////////////////////
   function onDragEnd() {
-    if (
-      !itemBeingDragged < list.length ||
-      !whereTheItemWasDragged < list.length
-    ) {
+    if (whereTheItemWasDragged !== false) {
+      const newList = [...list];
+      const placeh = newList[whereTheItemWasDragged];
+      newList[whereTheItemWasDragged] = newList[itemBeingDragged];
+      newList[itemBeingDragged] = placeh;
+
+      setList(newList);
+      setItemBeingDragged(null);
+      setWhereTheItemWasDragged(null);
+    } else {
       return null;
     }
-    const newList = [...list];
-    const placeh = newList[whereTheItemWasDragged];
-    newList[whereTheItemWasDragged] = newList[itemBeingDragged];
-    newList[itemBeingDragged] = placeh;
-
-    setList(newList);
-    setItemBeingDragged(null);
-    setWhereTheItemWasDragged(null);
   }
+
   function handleDrag() {
-    if (
-      !itemBeingDragged2 < important.length ||
-      !whereTheItemWasDragged2 < important.length
-    ) {
+    if (whereTheItemWasDragged2 !== false) {
+      const newList2 = [...important];
+      const placeh2 = newList2[whereTheItemWasDragged2];
+      newList2[whereTheItemWasDragged2] = newList2[itemBeingDragged2];
+      newList2[itemBeingDragged2] = placeh2;
+
+      setImportant(newList2);
+      setItemBeingDragged2(null);
+      setWhereTheItemWasDragged2(null);
+    } else {
       return null;
     }
-    const newList2 = [...important];
-    const placeh2 = newList2[whereTheItemWasDragged2];
-    newList2[whereTheItemWasDragged2] = newList2[itemBeingDragged2];
-    newList2[itemBeingDragged2] = placeh2;
-
-    setImportant(newList2);
-    setItemBeingDragged2(null);
-    setWhereTheItemWasDragged2(null);
   }
   //////////////////////////////////////////////////////////////////////////
   useEffect(() => {
