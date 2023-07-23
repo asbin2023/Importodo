@@ -88,7 +88,7 @@ button:hover {
 .middle-display {
   display: grid;
   padding-bottom: 5%;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr;
   margin-top: 4%;
   justify-items: space-between;
   color: rgba(255, 255, 255, 0.783);
@@ -115,13 +115,15 @@ button:hover {
   font-weight: 500;
   cursor: move;
   min-height: 50px;
-  display: flex;
+
   align-items: center;
+}
+.the-buttons {
+  float: right;
 }
 .the-delete-button,
 .purple-important-button,
 .the-add-button {
-  margin: 0px;
   display: none;
 }
 
@@ -145,20 +147,18 @@ html {
   padding: 10px;
   font-weight: 500;
   min-height: 50px;
-  display: flex;
   align-items: center;
 }
+
 .skies:hover .completed-delete-button {
   display: inline-block;
 }
 
 .completed-delete-button {
-  display: none;
-  margin: 0px;
+  float: right;
 }
 .important-delete-button {
-  display: none;
-  margin: 0px;
+  float: right;
 }
 .stars {
   background-color: rgb(56, 56, 69);
@@ -167,7 +167,7 @@ html {
   font-weight: 500;
   cursor: move;
   min-height: 50px;
-  display: flex;
+
   align-items: center;
 }
 .stars:hover .important-delete-button {
@@ -185,6 +185,11 @@ html {
 button {
   cursor: pointer;
   border-radius: 10px;
+}
+
+.soundcloud {
+  background-color: aquamarine;
+  opacity: 0.42;
 }
 
 @media screen and (max-width: 900px) {
@@ -208,7 +213,7 @@ button {
   .mess,
   .skies,
   .stars {
-    font-size: 13px;
+    font-size: 14.5px;
   }
   nav {
     max-height: 50px;

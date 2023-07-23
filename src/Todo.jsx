@@ -16,6 +16,7 @@ const Todo = () => {
 
   //list -> stores the list of input whenever the user submits
   const [list, setList] = useState([]);
+  const [music, setMusic] = useState(false);
 
   //done -> array of completed todos
   const [done, setDone] = useState([]);
@@ -144,6 +145,10 @@ const Todo = () => {
     );
   }
 
+  function playMusic() {
+    setMusic(!music);
+  }
+
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //used useEffect hook and added an condition which renders every time the [combine] state changes.
   //implemented this in order to fix a bug
@@ -215,6 +220,17 @@ const Todo = () => {
 
   return (
     <div className="main-container">
+      <div className="musicClass" style={{ textAlign: "center", margin: "2%" }}>
+        {music && (
+          <iframe
+            className="soundcloud"
+            width="80%"
+            autoPlay
+            height="100"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/821121427"
+          ></iframe>
+        )}
+      </div>
       <div className="sub-main-container">
         <form className="form" onSubmit={handleSubmit} action="#">
           <input
@@ -239,9 +255,11 @@ const Todo = () => {
           onClick={handleToggle}
           disabled={done.length < 1 ? true : false}
         >
-          Toggle Completed
+          {toggle && done.length > 0 ? "Hide Completed" : "Show Completed"}
         </button>
-        <button className="hide-completed-button">Placeholder</button>
+        <button className="hide-completed-button" onClick={playMusic}>
+          {music ? "Hide Music Player" : "Music Player"}
+        </button>
       </div>
 
       <div className="middle-display">
@@ -253,7 +271,7 @@ const Todo = () => {
             {" "}
             Todo List
           </h2>
-          <ul>
+          <ul style={{ listStyle: "none" }}>
             {list.map((item, index) => (
               <li
                 draggable
@@ -265,28 +283,30 @@ const Todo = () => {
                 // onDragOver={(e) => e.preventDefault()}
               >
                 {item}
-                <button
-                  className="the-add-button"
-                  value={item}
-                  onClick={handleAdd}
-                >
-                  ✅
-                </button>
-                <button
-                  className="the-delete-button"
-                  value={item}
-                  onClick={handleDelete}
-                >
-                  {" "}
-                  ❌
-                </button>
-                <button
-                  className="purple-important-button"
-                  value={item}
-                  onClick={handleImportant}
-                >
-                  🟣
-                </button>
+                <div className="the-buttons">
+                  <button
+                    className="the-add-button"
+                    value={item}
+                    onClick={handleAdd}
+                  >
+                    ✓
+                  </button>
+                  <button
+                    className="the-delete-button"
+                    value={item}
+                    onClick={handleDelete}
+                  >
+                    {" "}
+                    𝖷
+                  </button>
+                  <button
+                    className="purple-important-button"
+                    value={item}
+                    onClick={handleImportant}
+                  >
+                    ‼️
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
@@ -300,7 +320,7 @@ const Todo = () => {
               {done.map((item) => (
                 <li
                   className="skies"
-                  style={{ textDecoration: "line-through" }}
+                  style={{ textDecoration: "none" }}
                   key={item}
                 >
                   {item}
@@ -330,7 +350,6 @@ const Todo = () => {
                         onDragStart={() => setItemBeingDragged2(idx)}
                         onDragEnter={() => setWhereTheItemWasDragged2(idx)}
                         onDragEnd={handleDrag}
-                      
                       >
                         {item}
                         <button
@@ -338,7 +357,7 @@ const Todo = () => {
                           value={item}
                           onClick={handleImportantDelete}
                         >
-                          🍀
+                          𝖷
                         </button>
                       </li>
                     </div>
