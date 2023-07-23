@@ -1,6 +1,5 @@
 //imported useState to use later
 import { useState, useEffect } from "react";
-import React from "react";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -20,7 +19,7 @@ const Todo = () => {
   const [done, setDone] = useState([]);
 
   //this is to show/hide the 'Completed' h2 later on
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   //important -> an array of important todos, used later.
   const [important, setImportant] = useState([]);
@@ -57,16 +56,18 @@ const Todo = () => {
     } else {
       setList([...list, inputText]);
     }
+
     //setting the input to empty after submitting
     setInputText("");
   }
-
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //for handleDelete function, this is the ❌, it deletes the list item by using .filter method
   // I also ended up deleting the list item from the important array if it was there as well (in order to fix a bug in the future)
 
   function handleDelete(e) {
+    console.log(e.target.value);
+
     setImportant((prevImportant) =>
       prevImportant.filter((item) => item !== e.target.value)
     );
@@ -110,6 +111,7 @@ const Todo = () => {
     setList([]);
     setImportant([]);
     setCombine([]);
+    localStorage.clear();
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -178,7 +180,17 @@ const Todo = () => {
     }
   }, [combine]);
 
-  /////////////////
+  useEffect(() => {
+    const savedTodo = JSON.parse(localStorage.getItem("Todo List"));
+    if (savedTodo) {
+      setList(savedTodo);
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("Todo List", JSON.stringify([...list]));
+  }, [list]);
+
+  /////////////////  //////////////////////////////////////////////////////////////////////////
   function onDragEnd() {
     if (whereTheItemWasDragged == null || itemBeingDragged == null) {
       console.log("nulllllll");
@@ -193,9 +205,17 @@ const Todo = () => {
     setItemBeingDragged(null);
     setWhereTheItemWasDragged(null);
   }
+  //////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    const savedDone = JSON.parse(localStorage.getItem("Done List"));
+    if (savedDone) {
+      setDone(savedDone);
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("Done List", JSON.stringify([...done]));
+  }, [done]);
 
-  console.log("item being draggged", itemBeingDragged);
-  console.log("where the item was dragged", whereTheItemWasDragged);
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

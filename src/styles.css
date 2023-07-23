@@ -114,11 +114,12 @@ button:hover {
   padding: 10px;
   font-weight: 500;
   cursor: move;
+  height: 40px;
 }
 .the-delete-button,
 .purple-important-button,
 .the-add-button {
-  margin: 0 4px;
+  margin: 0px;
   display: none;
 }
 
@@ -148,11 +149,11 @@ html {
 
 .completed-delete-button {
   display: none;
-  margin: 0 10px;
+  margin: 0px;
 }
 .important-delete-button {
   display: none;
-  margin: 0 10px;
+  margin: 0px;
 }
 .stars {
   background-color: rgb(56, 56, 69);
