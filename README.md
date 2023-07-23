@@ -1,6 +1,5 @@
 <h1 align="center">Importodo - Todo List App</h1>
 
-
 ## Introduction
 
 Importodo is a simple and interactive todo list application built with React. It allows you to manage your tasks efficiently by keeping track of your todo items, completed tasks, and important todos. Add, complete, and prioritize tasks with ease!
@@ -14,23 +13,17 @@ Importodo is a simple and interactive todo list application built with React. It
 - Display or hide completed tasks as needed.
 - Sort tasks by importance to focus on what matters most.
 
-## Usage
+## Local Storage
 
-1. Enter your todo item in the input field and press "Enter" or click "Add Todo" to add it to the list.
+Importodo is equipped with local storage support, which means your todo list will be saved even after refreshing the page or closing the browser. You can seamlessly pick up where you left off with your tasks, making it convenient for daily use.
 
-2. Click the <kbd>✅</kbd> button to mark a task as completed. It will move to the "Completed" section.
+## Drag and Drop
 
-3. Click the <kbd>❌</kbd> button to delete a task from the list.
+The drag and drop feature allows you to easily rearrange the order of your todo items. Simply click and hold an item, then drag it to a new position in the list. The updated order will be automatically saved to local storage, so your custom arrangement persists across sessions.
 
-4. Click the <kbd>🟣</kbd> button to prioritize a task as important. It will appear at the top of the list and in the "Important" section.
+## Toggle Button
 
-5. Use the "Display completed" and "Hide completed" buttons to show or hide completed tasks.
-
-6. Click "Sort by importance" to prioritize important tasks at the top of the list.
-
-7. To remove a completed task from the "Completed" section, click the <kbd>X</kbd> button next to the task.
-
-8. Click "Reset" to clear all tasks from the list, completed tasks, and important tasks.
+The "Toggle Completed" button enables you to show or hide completed tasks in the "Completed" section. This allows you to keep your todo list tidy and focused on what's pending. Click the button to switch between displaying and hiding completed tasks.
 
 ## Deployment
 
