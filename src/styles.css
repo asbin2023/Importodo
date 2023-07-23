@@ -114,7 +114,9 @@ button:hover {
   padding: 10px;
   font-weight: 500;
   cursor: move;
-  height: 40px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
 }
 .the-delete-button,
 .purple-important-button,
@@ -142,7 +144,9 @@ html {
   margin: 10px;
   padding: 10px;
   font-weight: 500;
-  height: 40px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
 }
 .skies:hover .completed-delete-button {
   display: inline-block;
@@ -162,7 +166,9 @@ html {
   padding: 10px;
   font-weight: 500;
   cursor: move;
-  height: 40px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
 }
 .stars:hover .important-delete-button {
   display: inline-block;
