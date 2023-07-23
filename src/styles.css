@@ -68,6 +68,9 @@ nav button {
   padding: 10px;
   margin-right: 5px;
 }
+.shuffle{
+  flex: 1;
+}
 
 .sort-by-button {
   flex: 1;
@@ -191,7 +194,7 @@ button {
 
 .soundcloud {
   background-color: aquamarine;
-  opacity: 0.42;
+  opacity: 0.47;
 }
 
 @media screen and (max-width: 900px) {

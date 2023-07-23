@@ -1,5 +1,23 @@
 //imported useState to use later
 import { useState, useEffect } from "react";
+const study = [
+  "tracks/1527987262",
+  "playlists/595582668",
+  "tracks/1199040037",
+  "playlists/1582450309",
+  "tracks/1385862445",
+  "playlists/504994746",
+  "tracks/605131284",
+  "tracks/558192753",
+  "tracks/83946902",
+  "playlists/1465388470",
+  "tracks/685244341",
+  "playlists/1612469881",
+  "tracks/153262299",
+];
+function randomNum() {
+  return Math.floor(Math.random() * study.length);
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -7,6 +25,7 @@ import { useState, useEffect } from "react";
 //looking back, I wish i had used objects to store data, instead of creating these many states.
 
 const Todo = () => {
+  const [musicPlaying, setMusicPlaying] = useState(randomNum());
   const [itemBeingDragged, setItemBeingDragged] = useState(null);
   const [whereTheItemWasDragged, setWhereTheItemWasDragged] = useState(null);
   const [itemBeingDragged2, setItemBeingDragged2] = useState(null);
@@ -31,6 +50,7 @@ const Todo = () => {
 
   //handleChange -> tracks the change in the todo list input (whenever the user types something in )
   //this also sets the inputText state to the current value of the input
+
   function handleChange(e) {
     setInputText(e.target.value);
   }
@@ -227,7 +247,7 @@ const Todo = () => {
             width="80%"
             autoPlay
             height="100"
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/821121427"
+            src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/${study[musicPlaying]}`}
           ></iframe>
         )}
       </div>
@@ -259,6 +279,13 @@ const Todo = () => {
         </button>
         <button className="hide-completed-button" onClick={playMusic}>
           {music ? "Hide Music Player" : "Music Player"}
+        </button>
+        <button
+          onClick={() => setMusicPlaying(randomNum)}
+          disabled={music === true ? false : true}
+          className="shuffle"
+        >
+          Shuffle
         </button>
       </div>
 
