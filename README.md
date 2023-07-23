@@ -23,11 +23,11 @@ Importodo is a simple and interactive todo list application built with React. It
 
 - **Display/Hiding Completed Tasks**: Click the "Show Completed" or "Hide Completed" button to toggle the display of completed tasks in the "Completed" section.
 
-- **Sort by Importance**: The app automatically arranges tasks with important todos first, followed by non-important ones.
+- **Drag and Drop**: Easily rearrange the order of your todo items by dragging and dropping them.
 
 - **Music Player**: Click the "Music Player" button to show/hide the music player.
   
-- **Suffle**: Randomly shuffle your music playlist for a fresh listening experience.
+- **Shuffle**: Randomly shuffle your music playlist for a fresh listening experience.
   
 - **Time Display**: The current time is displayed in the top navigation bar.
 
