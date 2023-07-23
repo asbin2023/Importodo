@@ -9,6 +9,8 @@ import { useState, useEffect } from "react";
 const Todo = () => {
   const [itemBeingDragged, setItemBeingDragged] = useState(null);
   const [whereTheItemWasDragged, setWhereTheItemWasDragged] = useState(null);
+  const [itemBeingDragged2, setItemBeingDragged2] = useState(null);
+  const [whereTheItemWasDragged2, setWhereTheItemWasDragged2] = useState(null);
   // inputText is for setting the user input
   const [inputText, setInputText] = useState("");
 
@@ -23,11 +25,6 @@ const Todo = () => {
 
   //important -> an array of important todos, used later.
   const [important, setImportant] = useState([]);
-
-  //combine -> combines the important items and the non-important items. important items are in the front compared to the other items.
-  const [combine, setCombine] = useState([]);
-
-  const [toggle2, setToggle2] = useState("none");
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -78,9 +75,6 @@ const Todo = () => {
       });
     });
     //it also removes the list item from combine array (if it was there in the first place)
-    setCombine((prevCombine) =>
-      prevCombine.filter((item) => item !== e.target.value)
-    );
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -88,7 +82,7 @@ const Todo = () => {
   //for the next two functions, i created them in order to show/hide the 'Completed' div element. pretty simple functions.
   function handleToggle() {
     console.log(done.length);
-    done.length < 1 ? confirm("Completed is empty") : setToggle(!toggle);
+    setToggle(!toggle);
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +104,7 @@ const Todo = () => {
     setInputText("");
     setList([]);
     setImportant([]);
-    setCombine([]);
+
     localStorage.clear();
   }
 
@@ -142,43 +136,20 @@ const Todo = () => {
   //this is for the 'Sort by importance'
   // i also use the .includes method to check if the item already existed in the important array
 
-  function handleCombine() {
-    if (combine.length <= 1) {
-      setCombine([]);
-    }
-    let listCopy = [...list];
-    let filered = listCopy.filter((item) => !important.includes(item));
-    setCombine([...important, ...filered]);
-    //setting combine at the very end, using ...spread to copy ...both arrays
-  }
-
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //after the important list is displayed, once the user clicks '🍀', the list item is deleted from the ...combine array (filtered)
   //also for the condition,it was once again used to debug the code after running into serval bugs regarding the important array
 
   function handleImportantDelete(e) {
-    if (combine.length <= 1) {
-      setCombine([]);
-      setImportant([]);
-    }
-
-    setCombine((prevCombine) =>
-      prevCombine.filter((item) => item !== e.target.value)
+    setImportant((prevImportant) =>
+      prevImportant.filter((item) => item !== e.target.value)
     );
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //used useEffect hook and added an condition which renders every time the [combine] state changes.
   //implemented this in order to fix a bug
-
-  useEffect(() => {
-    if (important.length !== 0) {
-      setToggle2("block");
-    } else {
-      setToggle2("none");
-    }
-  }, [combine]);
 
   useEffect(() => {
     const savedTodo = JSON.parse(localStorage.getItem("Todo List"));
@@ -192,10 +163,6 @@ const Todo = () => {
 
   /////////////////  //////////////////////////////////////////////////////////////////////////
   function onDragEnd() {
-    if (whereTheItemWasDragged == null || itemBeingDragged == null) {
-      console.log("nulllllll");
-      return null;
-    }
     const newList = [...list];
     const placeh = newList[whereTheItemWasDragged];
     newList[whereTheItemWasDragged] = newList[itemBeingDragged];
@@ -204,6 +171,16 @@ const Todo = () => {
     setList(newList);
     setItemBeingDragged(null);
     setWhereTheItemWasDragged(null);
+  }
+  function handleDrag() {
+    const newList2 = [...important];
+    const placeh2 = newList2[whereTheItemWasDragged2];
+    newList2[whereTheItemWasDragged2] = newList2[itemBeingDragged2];
+    newList2[itemBeingDragged2] = placeh2;
+
+    setImportant(newList2);
+    setItemBeingDragged2(null);
+    setWhereTheItemWasDragged2(null);
   }
   //////////////////////////////////////////////////////////////////////////
   useEffect(() => {
@@ -217,6 +194,16 @@ const Todo = () => {
   }, [done]);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    const savedImp = JSON.parse(localStorage.getItem("Imp List"));
+    if (savedImp) {
+      setImportant(savedImp);
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("Imp List", JSON.stringify([...important]));
+  }, [important]);
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -241,18 +228,14 @@ const Todo = () => {
         </form>
       </div>
       <div className="the-three-buttons">
-        <button className="display-completed-button" onClick={handleToggle}>
+        <button
+          className="display-completed-button"
+          onClick={handleToggle}
+          disabled={done.length < 1 ? true : false}
+        >
           Toggle Completed
         </button>
         <button className="hide-completed-button">Placeholder</button>
-        <button
-          className="sort-by-button"
-          disabled={important.length <= 0 && true}
-          onClick={handleCombine}
-        >
-          {" "}
-          Sort by importance
-        </button>
       </div>
 
       <div className="middle-display">
@@ -328,14 +311,21 @@ const Todo = () => {
           </div>
         </div>
         <div className="the-important-display">
-          <div style={{ display: toggle2 }}>
+          <div style={{ display: important.length > 0 ? "block" : "none" }}>
             <h2 className="todo-h2">Important:</h2>
             <ul>
               {important.length > 0 &&
-                combine.map((item, idx) => {
+                important.map((item, idx) => {
                   return (
                     <div key={idx}>
-                      <li className="stars">
+                      <li
+                        className="stars"
+                        draggable
+                        onDragStart={() => setItemBeingDragged2(idx)}
+                        onDragEnter={() => setWhereTheItemWasDragged2(idx)}
+                        onDragEnd={handleDrag}
+                        onDragOver={(e) => e.preventDefault()}
+                      >
                         {item}
                         <button
                           className="important-delete-button"
