@@ -19,6 +19,8 @@ Importodo is a simple and interactive todo list application built with React. It
 
 - **Deleting Todo**: Click the 𝖷 button next to a todo item to delete it from the list. It will be removed from both the main list and the "Important" section if it exists.
 
+- **Local Storage**: Importodo is equipped with local storage support, which means your todo list will be saved even after refreshing the page or closing the browser. You can seamlessly pick up where you left off with your tasks, making it convenient for daily use.
+
 - **Prioritizing Todo**: Click the ‼️ button next to a todo item to mark it as important. Important todos will be displayed in the "Important" section.
 
 - **Display/Hiding Completed Tasks**: Click the "Show Completed" or "Hide Completed" button to toggle the display of completed tasks in the "Completed" section.
