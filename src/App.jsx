@@ -6,15 +6,24 @@ const App = () => {
   function handleConfirm() {
     setAlert(
       confirm(
-        "🟣 = marks as important \n✅ = marks as complete \n ❌ = removes the selected list item \n - ability to toggle display/hide on completed items \n - able to sort list based on importance "
+        "‼️ = marks as important \n✓ = marks as complete \n 𝖷 = removes the selected list item \n - ability to toggle display/hide on completed items \n - able to sort list based on importance "
       )
     );
   }
+  let daytime = new Date();
+  let today =
+    daytime.getMonth() +
+    1 +
+    " / " +
+    daytime.getDate() +
+    " / " +
+    daytime.getFullYear();
 
   return (
     <div className="main-main">
       <nav>
         <h1>Importodo</h1>
+        <p> {today}</p>
         <button onClick={handleConfirm}>Help</button>
       </nav>
       <Todo />

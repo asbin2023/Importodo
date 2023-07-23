@@ -316,7 +316,7 @@ const Todo = () => {
             style={{ display: toggle && done.length > 0 ? "block" : "none" }}
           >
             <h2 className="todo-h2">Completed:</h2>
-            <ul>
+            <ul style={{ listStyle: "none" }}>
               {done.map((item) => (
                 <li
                   className="skies"
@@ -339,7 +339,7 @@ const Todo = () => {
         <div className="the-important-display">
           <div style={{ display: important.length > 0 ? "block" : "none" }}>
             <h2 className="todo-h2">Important:</h2>
-            <ul>
+            <ul style={{ listStyle: "none" }}>
               {important.length > 0 &&
                 important.map((item, idx) => {
                   return (

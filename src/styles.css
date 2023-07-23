@@ -149,15 +149,17 @@ html {
   min-height: 50px;
   align-items: center;
 }
+.completed-delete-button {
+  display: none;
+  float: right;
+}
 
 .skies:hover .completed-delete-button {
   display: inline-block;
 }
 
-.completed-delete-button {
-  float: right;
-}
 .important-delete-button {
+  display: none;
   float: right;
 }
 .stars {
