@@ -1,8 +1,9 @@
 import Todo from "./Todo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 //imported useStateto display message to the user when they first load the page
 const App = () => {
   const [alert, setAlert] = useState("");
+  const [time, setTime] = useState("");
   function handleConfirm() {
     setAlert(
       confirm(
@@ -10,20 +11,21 @@ const App = () => {
       )
     );
   }
-  let daytime = new Date();
-  let today =
-    daytime.getMonth() +
-    1 +
-    " / " +
-    daytime.getDate() +
-    " / " +
-    daytime.getFullYear();
+  useEffect(() => {
+    function updateTime() {
+      let daytime = new Date();
+      let todaysTime = daytime.toLocaleTimeString();
+      setTime(todaysTime);
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+  }, []);
 
   return (
     <div className="main-main">
       <nav>
         <h1>Importodo</h1>
-        <p> {today}</p>
+        <p className="time" style={{fontFamily: 'monospace'}}> {time}</p>
         <button onClick={handleConfirm}>Help</button>
       </nav>
       <Todo />

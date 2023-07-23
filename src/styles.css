@@ -179,6 +179,10 @@ html {
   display: inline-block;
 }
 
+.time{
+  font-size: 1.3rem;
+}
+
 .todo-h2 {
   margin-left: 50px;
   background-color: rgba(240, 255, 255, 0.302);
@@ -206,6 +210,9 @@ button {
   .middle-display {
     grid-template-columns: 1fr;
   }
+  .time{
+    font-size: 1.2rem;
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -228,5 +235,8 @@ button {
   }
   .todo-h2 {
     margin-left: 30px;
+  }
+  .time{
+    font-size: 1.1rem;
   }
 }
