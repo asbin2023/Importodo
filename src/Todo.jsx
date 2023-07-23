@@ -163,6 +163,12 @@ const Todo = () => {
 
   /////////////////  //////////////////////////////////////////////////////////////////////////
   function onDragEnd() {
+    if (
+      !itemBeingDragged < list.length ||
+      !whereTheItemWasDragged < list.length
+    ) {
+      return null;
+    }
     const newList = [...list];
     const placeh = newList[whereTheItemWasDragged];
     newList[whereTheItemWasDragged] = newList[itemBeingDragged];
@@ -173,6 +179,12 @@ const Todo = () => {
     setWhereTheItemWasDragged(null);
   }
   function handleDrag() {
+    if (
+      !itemBeingDragged2 < important.length ||
+      !whereTheItemWasDragged2 < important.length
+    ) {
+      return null;
+    }
     const newList2 = [...important];
     const placeh2 = newList2[whereTheItemWasDragged2];
     newList2[whereTheItemWasDragged2] = newList2[itemBeingDragged2];
