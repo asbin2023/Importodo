@@ -63,8 +63,6 @@ const Todo = () => {
   // I also ended up deleting the list item from the important array if it was there as well (in order to fix a bug in the future)
 
   function handleDelete(e) {
-    console.log(e.target.value);
-
     setImportant((prevImportant) =>
       prevImportant.filter((item) => item !== e.target.value)
     );
@@ -81,7 +79,6 @@ const Todo = () => {
 
   //for the next two functions, i created them in order to show/hide the 'Completed' div element. pretty simple functions.
   function handleToggle() {
-    console.log(done.length);
     setToggle(!toggle);
   }
 
@@ -160,7 +157,7 @@ const Todo = () => {
   useEffect(() => {
     localStorage.setItem("Todo List", JSON.stringify([...list]));
   }, [list]);
-  console.log(whereTheItemWasDragged);
+
   /////////////////  //////////////////////////////////////////////////////////////////////////
   function onDragEnd() {
     if (whereTheItemWasDragged !== false) {
@@ -265,7 +262,7 @@ const Todo = () => {
                 onDragStart={() => setItemBeingDragged(index)}
                 onDragEnter={() => setWhereTheItemWasDragged(index)}
                 onDragEnd={onDragEnd}
-                onDragOver={(e) => e.preventDefault()}
+                // onDragOver={(e) => e.preventDefault()}
               >
                 {item}
                 <button
@@ -333,7 +330,7 @@ const Todo = () => {
                         onDragStart={() => setItemBeingDragged2(idx)}
                         onDragEnter={() => setWhereTheItemWasDragged2(idx)}
                         onDragEnd={handleDrag}
-                        onDragOver={(e) => e.preventDefault()}
+                      
                       >
                         {item}
                         <button
