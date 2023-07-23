@@ -1,5 +1,6 @@
 //imported useState to use later
 import { useState, useEffect } from "react";
+import React from "react";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -7,6 +8,8 @@ import { useState, useEffect } from "react";
 //looking back, I wish i had used objects to store data, instead of creating these many states.
 
 const Todo = () => {
+  const [itemBeingDragged, setItemBeingDragged] = useState(null);
+  const [whereTheItemWasDragged, setWhereTheItemWasDragged] = useState(null);
   // inputText is for setting the user input
   const [inputText, setInputText] = useState("");
 
@@ -175,6 +178,24 @@ const Todo = () => {
     }
   }, [combine]);
 
+  /////////////////
+  function onDragEnd() {
+    if (whereTheItemWasDragged == null || itemBeingDragged == null) {
+      console.log("nulllllll");
+      return null;
+    }
+    const newList = [...list];
+    const placeh = newList[whereTheItemWasDragged];
+    newList[whereTheItemWasDragged] = newList[itemBeingDragged];
+    newList[itemBeingDragged] = placeh;
+
+    setList(newList);
+    setItemBeingDragged(null);
+    setWhereTheItemWasDragged(null);
+  }
+
+  console.log("item being draggged", itemBeingDragged);
+  console.log("where the item was dragged", whereTheItemWasDragged);
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -225,7 +246,15 @@ const Todo = () => {
           </h2>
           <ul>
             {list.map((item, index) => (
-              <li draggable className="mess" key={index}>
+              <li
+                draggable
+                className="mess"
+                key={index}
+                onDragStart={() => setItemBeingDragged(index)}
+                onDragEnter={() => setWhereTheItemWasDragged(index)}
+                onDragEnd={onDragEnd}
+                onDragOver={(e) => e.preventDefault()}
+              >
                 {item}
                 <button
                   className="the-add-button"
