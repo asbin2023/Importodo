@@ -1,5 +1,7 @@
 //imported useState to use later
 import { useState, useEffect } from "react";
+import React from "react";
+import Confetti from "react-confetti";
 const study = [
   "tracks/1527987262",
   "playlists/595582668",
@@ -25,6 +27,7 @@ function randomNum() {
 //looking back, I wish i had used objects to store data, instead of creating these many states.
 
 const Todo = () => {
+  const [runConfetti, setRunConfetti] = useState(false);
   const [musicPlaying, setMusicPlaying] = useState(randomNum());
   const [itemBeingDragged, setItemBeingDragged] = useState(null);
   const [whereTheItemWasDragged, setWhereTheItemWasDragged] = useState(null);
@@ -111,9 +114,13 @@ const Todo = () => {
 
   function handleAdd(e) {
     setToggle("block");
-    done.includes(e.target.value) ? null : setDone([...done, e.target.value]);
+    if (done.includes(e.target.value)) {
+      return null;
+    } else {
+      setRunConfetti(true);
+      setDone([...done, e.target.value]);
+    }
   }
-
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //this resets everything
@@ -129,7 +136,6 @@ const Todo = () => {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // deletes the item from the 'Completed' list after the 'x' is pressed.
-
   function deleteCompleted(e) {
     setDone((done) => done.filter((word) => word !== e.target.value));
   }
@@ -235,11 +241,23 @@ const Todo = () => {
   useEffect(() => {
     localStorage.setItem("Imp List", JSON.stringify([...important]));
   }, [important]);
+  useEffect(() => {
+    if (runConfetti) {
+      setTimeout(() => setRunConfetti(false), 3000);
+    }
+  }, [runConfetti]);
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className="main-container">
+      <Confetti
+        width={innerWidth}
+        height={innerHeight}
+        numberOfPieces={90}
+        recycle={runConfetti ? true : false}
+        gravity={0.2}
+      />
       <div className="musicClass" style={{ textAlign: "center", margin: "2%" }}>
         {music && (
           <iframe
