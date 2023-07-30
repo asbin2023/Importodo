@@ -270,15 +270,13 @@ const Todo = () => {
         )}
       </div>
       <div className="sub-main-container">
-        <form className="form" onSubmit={handleSubmit} action="#">
+        <form className="form" onSubmit={handleSubmit}>
           <input
             className="the-input"
             onChange={handleChange}
             value={inputText}
             type="text"
             required
-            spellCheck={true}
-            autoFocus
             placeholder="Enter todo here.."
           />
           <button className="add-todo-button">Add Todo</button>
