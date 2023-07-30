@@ -4,6 +4,11 @@
   box-sizing: border-box;
   /* border: 1px solid rgba(250, 128, 114, 0.474); */
   font-family: Inter;
+  margin: 0;
+}
+html{
+  background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+
 }
 .main-main {
   max-width: 3500px;
@@ -12,16 +17,25 @@
   min-height: 100vh;
   max-height: 100%;
 
-  background-color: rgba(52, 47, 197, 0.208);
+  background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+
 }
 nav {
-  background-color: rgba(87, 18, 122, 0.539);
+  background-color: #1D201F;
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-bottom: 2%;
   color: rgba(255, 255, 255, 0.738);
+  border-radius: 5px;
+  padding: 15px;
+
 }
+nav h1{
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.794);
+}
+
 
 nav button {
   padding: 10px 20px;
@@ -34,14 +48,16 @@ nav button {
 }
 
 .form input {
-  border: 1px solid rgba(149, 0, 255, 0.303);
+  border: 1px solid rgb(14, 13, 13);
   border-radius: 10px;
   flex: 5;
-  padding: 10px;
+  font-size: 18px;
+  padding: 5px;
   color: rgb(25, 5, 5);
-  background-color: rgba(220, 219, 230, 0.619);
+  background-color: rgba(255, 255, 255, 0.912);
   margin-right: 5px;
 }
+
 .form .add-todo-button {
   flex: 2;
   padding: 10px;
@@ -78,14 +94,17 @@ nav button {
 }
 button {
   font-weight: 800;
+  
   font-size: 0.9rem;
   background-color: rgba(225, 220, 228, 0.632);
+  transition: 1s;
 }
 button:hover {
-  border-radius: 5px;
+  border-radius: 10px;
   border-color: rgb(0, 0, 0);
   background-color: rgba(29, 27, 25, 0.136);
   color: rgb(237, 202, 4);
+  transform: scale(1.03);
 }
 
 .middle-display {
@@ -140,8 +159,9 @@ button:hover {
   display: inline-block;
 }
 
-html {
-  background-color: rgba(49, 5, 41, 0.553);
+
+html{
+  
 }
 
 .skies {
@@ -239,4 +259,26 @@ button {
   .time{
     font-size: 1.1rem;
   }
+}
+nav button,button{
+  border: 2px solid rgba(66, 30, 30, 0.249);
+  margin:15px ;
+  border-radius: 10px;
+  background-color: rgba(29, 27, 25, 0.136);
+  color: rgba(255, 255, 255, 0.795);
+  transform: scale(1.03);
+  transition: 1s;
+}
+nav button:hover,button:hover{
+  transform: scale(1.07);
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 1px 1px 1px rgb(234, 232, 232);
+}
+nav button{
+  font-size: 18.5px;
+}
+.form input{
+  border: 3px solid rgb(255, 255, 255);
+  outline: none;
+  
 }
