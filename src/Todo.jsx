@@ -254,7 +254,7 @@ const Todo = () => {
       <Confetti
         width={innerWidth}
         height={innerHeight}
-        numberOfPieces={90}
+        numberOfPieces={89}
         recycle={runConfetti ? true : false}
         gravity={0.2}
       />
