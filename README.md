@@ -2,7 +2,8 @@
 
 ## Deployment
 
-Access the deployed version of the app here: [https://asbin2023.github.io/todo/](https://asbin2023.github.io/todo/)
+Access the deployed version of the app here: https://vermillion-liger-1ec934.netlify.app/
+
 
 
 ## Introduction
