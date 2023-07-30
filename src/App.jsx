@@ -25,7 +25,10 @@ const App = () => {
     <div className="main-main">
       <nav>
         <h1>Importodo</h1>
-        <p className="time" style={{fontFamily: 'monospace',fontSize:"24px"}}> {time}</p>
+        <p className="time" style={{ fontFamily: "monospace" }}>
+          {" "}
+          {time}
+        </p>
         <button onClick={handleConfirm}>Help</button>
       </nav>
       <Todo />

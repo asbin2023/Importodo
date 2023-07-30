@@ -254,7 +254,7 @@ const Todo = () => {
       <Confetti
         width={innerWidth}
         height={innerHeight}
-        numberOfPieces={89}
+        numberOfPieces={90}
         recycle={runConfetti ? true : false}
         gravity={0.2}
       />
@@ -270,13 +270,15 @@ const Todo = () => {
         )}
       </div>
       <div className="sub-main-container">
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit} action="#">
           <input
             className="the-input"
             onChange={handleChange}
             value={inputText}
             type="text"
             required
+            spellCheck={true}
+            autoFocus
             placeholder="Enter todo here.."
           />
           <button className="add-todo-button">Add Todo</button>
