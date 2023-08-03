@@ -272,6 +272,7 @@ const Todo = () => {
       <div className="sub-main-container">
         <form className="form" onSubmit={handleSubmit} action="#">
           <input
+            style={{ outline: "none" }}
             className="the-input"
             onChange={handleChange}
             value={inputText}
